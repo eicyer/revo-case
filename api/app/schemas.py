@@ -12,6 +12,7 @@ class CompanyCreate(BaseModel):
 class CompetitorOut(BaseModel):
     name: str
     summary: list[str]
+    known_company_id: int | None = None
 
 
 class CompanyOut(BaseModel):
