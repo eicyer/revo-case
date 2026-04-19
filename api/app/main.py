@@ -4,7 +4,7 @@ from app.db import engine, Base
 from app import models  # noqa: F401
 from app.auth import get_current_admin
 from app.routers import auth as auth_router
-
+from app.routers import companies as companies_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -16,6 +16,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title="Revo Case API", lifespan=lifespan)
 
 app.include_router(auth_router.router)
+app.include_router(companies_router.router)
 
 @app.get("/health")
 def health():

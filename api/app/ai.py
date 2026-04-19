@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 from app.config import settings
 
-.
+
 class CompetitorIntel(BaseModel):
     name: str
     summary: list[str]
