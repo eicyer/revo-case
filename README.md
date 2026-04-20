@@ -17,7 +17,10 @@ cd revo-case
 
 # Backend env
 cp api/.env.example api/.env
-# Open api/.env and fill in GEMINI_API_KEY. The other defaults are fine.
+# Open api/.env and fill in:
+#   GEMINI_API_KEY  — from https://aistudio.google.com/app/apikey
+#   JWT_SECRET      — generate with: python3 -c "import secrets; print(secrets.token_urlsafe(48))"
+# The other defaults are fine.
 
 # Frontend env
 cp ui/.env.example ui/.env
