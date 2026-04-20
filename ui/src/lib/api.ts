@@ -1,5 +1,31 @@
 const API_URL = import.meta.env.VITE_API_URL
 
+export type CompanyStatus = "pending" | "ready" | "failed"
+
+export type Competitor = {
+  name: string
+  summary: string[]
+  known_company_id: number | null
+}
+
+export type Company = {
+  id: number
+  name: string
+  hq: string
+  website: string
+  status: CompanyStatus
+  summary: string[] | null
+  competitors: Competitor[] | null
+  error: string | null
+  created_at: string
+}
+
+export type CompanyCreate = {
+  name: string
+  hq: string
+  website: string
+}
+
 function authHeader(): Record<string, string> {
   const token = localStorage.getItem("token")
   return token ? { Authorization: `Bearer ${token}` } : {}
@@ -42,4 +68,15 @@ export async function apiLogin(username: string, password: string): Promise<stri
 
   const data = (await res.json()) as { access_token: string }
   return data.access_token
+}
+
+export function fetchCompanies(): Promise<Company[]> {
+  return apiFetch<Company[]>("/companies")
+}
+
+export function createCompany(body: CompanyCreate): Promise<Company> {
+  return apiFetch<Company>("/companies", {
+    method: "POST",
+    body: JSON.stringify(body),
+  })
 }
