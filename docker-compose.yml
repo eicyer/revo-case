@@ -23,7 +23,18 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ./api:/app                  
+      - ./api:/app
+
+  ui:
+    build: ./ui
+    env_file: ./ui/.env
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./ui:/app
+      - /app/node_modules
+    depends_on:
+      - api
 
 volumes:
   db_data:
