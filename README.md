@@ -11,21 +11,32 @@ That's it. You do **not** need Node, Python, or Postgres installed locally — e
 
 ## Setup
 
-```bash
-git clone <this repo>
-cd revo-case
+1. **Clone and enter the repo**:
 
-# Backend env
-cp api/.env.example api/.env
-# Open api/.env and fill in:
-#   GEMINI_API_KEY  — from https://aistudio.google.com/app/apikey
-#   JWT_SECRET      — generate with: python3 -c "import secrets; print(secrets.token_urlsafe(48))"
-# The other defaults are fine.
+   ```bash
+   git clone <this repo>
+   cd revo-case
+   ```
 
-# Frontend env
-cp ui/.env.example ui/.env
-# No edits needed — the default points at the local API.
-```
+2. **Create env files** by copying the examples:
+
+   - macOS / Linux:
+     ```bash
+     cp api/.env.example api/.env
+     cp ui/.env.example ui/.env
+     ```
+   - Windows (PowerShell):
+     ```powershell
+     Copy-Item api/.env.example api/.env
+     Copy-Item ui/.env.example ui/.env
+     ```
+
+3. **Fill in `api/.env`**:
+   - `GEMINI_API_KEY` — from <https://aistudio.google.com/app/apikey>
+   - `JWT_SECRET` — generate one with `python3 -c "import secrets; print(secrets.token_urlsafe(48))"` (or paste any long random string)
+   - The other defaults are fine.
+
+4. `ui/.env` needs no edits — the default points at the local API.
 
 ## Run
 
